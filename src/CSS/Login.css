@@ -1,0 +1,29 @@
+
+
+.header{
+  background-image: url('./background.png');
+  background-size: 100%;
+  background-position-y: 250px;
+  height:250px;
+  line-height: 200px;
+  text-align: center;
+}
+
+.textLogin{
+  margin-top:4%; 
+  color: azure;
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif  ;
+  font-style: oblique;
+}
+.cardLogin{
+  margin-left : 32%;
+  margin-right : 32%; 
+  margin-top: 10%;
+}
+
+.formLogin{
+  margin-top: 4%;
+  padding: 18px;
+}

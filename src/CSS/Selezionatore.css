@@ -1,0 +1,28 @@
+.generale{
+    text-align: center;
+    margin-top: 8%; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.colonna{
+    width: 50px;
+}
+
+.riga{
+    margin: 2%;
+}
+
+.lista{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 140%;
+    margin-left : 10%;
+    margin-right : 10%;
+    margin-top : 6%;
+}
+
+.corpoTesto {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 10%;
+    margin-left: 5%;
+    font-size: 110%;
+}

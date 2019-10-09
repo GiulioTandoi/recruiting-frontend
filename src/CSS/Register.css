@@ -1,0 +1,37 @@
+.cardRegister{
+    margin-left : 32%;
+    margin-right : 32%; 
+    margin-top: 4%;
+    line-height: 250%;
+    background-size:300%;
+    background-position-y: -140px;
+    background-position-x: -500px;
+    
+}
+
+.text{
+
+    margin-top: 6%;
+    text-align: center;
+    font-size: 50px;
+    color: orange;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif  ;
+    font-style: oblique;
+}
+
+.formRegister{
+
+    margin-right: 25%;
+    margin-left: 25%;
+    padding: 12px;
+    margin-bottom: 8%;
+}
+
+
+.text1{
+    padding-left: 16px;
+    color: orange;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+}
+  

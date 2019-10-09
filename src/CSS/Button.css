@@ -1,0 +1,40 @@
+
+.btn.btn-secondary {
+    transition: .3s;
+    background: #FFA000;
+    color: #FFF;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+    border: 2px solid #FFA000;
+    margin: 0px;
+}
+.btn.btn-secondary:hover {
+    transition: .2s;
+    background: #FFF;
+    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.26);
+    border: 1px solid #FFF;
+    color: #FFA000;
+}
+.btn.btn-secondary:active {
+    transition: .2s;
+    background: #FFF;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border: 1px solid #FFF;
+    color: #FFA000;
+}
+
+.btn {
+    height: 36px;
+    display: inline-block;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 16px 16px;
+    border-radius: 2px;
+    min-width: 120px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    
+}
+
+::placeholder {
+    color: orange;
+}

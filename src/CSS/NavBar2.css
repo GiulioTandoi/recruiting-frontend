@@ -1,0 +1,16 @@
+.mainDiv{
+    margin-left:2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    min-width: 500px;
+}
+
+.navItem {
+    font-size: 0.95em;
+    color:orange;
+}
+
+.navItem:hover {
+    color:white;
+    font-style: bold;
+}
