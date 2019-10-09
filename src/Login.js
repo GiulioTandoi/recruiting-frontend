@@ -69,7 +69,7 @@ class Login extends Component {
 
         
         return(
-            <Card className="cardLogin shadow">
+            <Card className="cardLogin shadow " >
                 <div className="header" >
                     <p className="textLogin">RecruitING</p>
                 </div>
