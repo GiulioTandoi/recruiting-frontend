@@ -19,7 +19,7 @@ class NavBar2 extends Component{
                     <Button variant="primary" className="col-md-1" style={{color:"orange"}}>
                         HOME
                     </Button>
-                    <Navbar.Brand style={{textAlign:"center", marginRight:"-16px"}} className="col-md-10" >
+                    <Navbar.Brand style={{textAlign:"center", marginRight:"-16px"}} className="col-md-10">
                             RECRUITING
                     </Navbar.Brand>
                     <Button variant="primary" className="col-md-1" style={{color:"orange"}} className>

@@ -33,7 +33,7 @@ class Profilo extends Component{
     render(){
         return(
             <Card className="shadow p-3 mb-5 bg-white rounded col-lg-12" 
-                style={{ width: '35%', height : '40%', marginTop : '5%', marginLeft:"auto", marginRight:"auto", minWidth:"200px" }}>
+                style={{ width: '35%', height : '40%', marginTop : '5%', marginLeft:"auto", marginRight:"auto", minWidth:"200px " }}>
             <Image variant="top" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" roundedCircle className ="image shadow" />
             <Card.Body>
                 <Card.Title className="generale">{this.state.dettagliProfilo.nome} {this.state.dettagliProfilo.cognome}</Card.Title>

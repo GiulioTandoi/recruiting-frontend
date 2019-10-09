@@ -1,8 +1,3 @@
-.generale{
-    text-align: center;
-    margin-top: 8%; 
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
 
 .colonna{
     width: 50px;
@@ -22,7 +17,7 @@
 
 .corpoTesto {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-top: 10%;
+    margin-top: 8%;
     text-align: center;
     font-size: 110%;
 }

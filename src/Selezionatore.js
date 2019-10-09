@@ -59,10 +59,10 @@ class Selezionatore extends Component{
                     
                     <Image variant="top" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" 
                     roundedCircle className ="image shadow" />
-                    <Card.Body>
-                        <Card.Title className="generale">{this.state.dettaglioProfiloSelezionatore.nome}  {this.state.dettaglioProfiloSelezionatore.cognome} </Card.Title>
+                    <Card.Body className="col-md-12" style={{margin:"auto"}} >
+                        <Card.Title className="corpoTesto">{this.state.dettaglioProfiloSelezionatore.nome} Giulio Tandoi  {this.state.dettaglioProfiloSelezionatore.cognome}</Card.Title>
                         <Card.Text className="corpoTesto">
-                            Email: {this.state.dettaglioProfiloSelezionatore.email}<br/> <br/>
+                            Email: {this.state.dettaglioProfiloSelezionatore.email} ahahah@ciao.wow<br/><br/>
                             Stato: {stato} 
                         </Card.Text><br/> <br/>
                         
