@@ -52,22 +52,30 @@ class Selezionatore extends Component{
         }
     
         return(
-            <div>
+            <div style={{minWidth:"420px"}}>
             <NavBar2></NavBar2>
-            <div style={{ width: '35%', height : '40%', marginTop : '3%', marginLeft : '35%' }} >
+            <div className= "col-lg-12" style={{ width: '35%', height : '40%', marginTop : '3%', margin:"auto" }} >
 
                     
-                    <Image variant="top" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" roundedCircle className ="image shadow" />
+                    <Image variant="top" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" 
+                    roundedCircle className ="image shadow" />
                     <Card.Body>
                         <Card.Title className="generale">{this.state.dettaglioProfiloSelezionatore.nome}  {this.state.dettaglioProfiloSelezionatore.cognome} </Card.Title>
                         <Card.Text className="corpoTesto">
                             Email: {this.state.dettaglioProfiloSelezionatore.email}<br/> <br/>
                             Stato: {stato} 
                         </Card.Text><br/> <br/>
-                        <Button onClick={this.mostraListaPreferiti} style={{marginLeft: "19%"}} className = "btn btn-secondary" >LISTA PREFERITI</Button>
+                        
+                        <Button onClick={this.mostraListaPreferiti}  
+                                    className = "col-md-5 btn btn-secondary"
+                                     
+                            >LISTA PREFERITI</Button>
+                        
                         <Button variant="outline-primary" onClick={this.modifica} 
-                                className ="btn btn-secondary"
-                                style={{marginLeft: "8%"}}>MODIFICA</Button>
+                                    className ="col-md-5 btn btn-secondary"
+                                    style={{marginLeft:"80px"}}
+                            >MODIFICA</Button>
+                   
                     </Card.Body>
          
             </div>
