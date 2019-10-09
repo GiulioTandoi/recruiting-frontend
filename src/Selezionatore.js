@@ -39,10 +39,6 @@ class Selezionatore extends Component{
         this.props.history.push({pathname : "/modificaSelezionatore" , state : this.props.location.state});
     }
 
-    tornaHome = () => {
-        this.props.history.push({pathname: "/home", state: this.props.location.state});
-    }
-
     render(){
         let stato ;
         if (this.state.dettaglioProfiloSelezionatore.stato ==null){
@@ -53,7 +49,7 @@ class Selezionatore extends Component{
     
         return(
             <div style={{minWidth:"420px"}}>
-            <NavBar2></NavBar2>
+            <NavBar2 stato={this.state.dettaglioProfiloSelezionatore}></NavBar2>
             <div className= "col-lg-12" style={{ width: '35%', height : '40%', marginTop : '3%', margin:"auto" }} >
 
                     
@@ -74,6 +70,7 @@ class Selezionatore extends Component{
                         <Button variant="outline-primary" onClick={this.modifica} 
                                     className ="col-md-5 btn btn-secondary"
                                     style={{marginLeft:"80px"}}
+
                             >MODIFICA</Button>
                    
                     </Card.Body>

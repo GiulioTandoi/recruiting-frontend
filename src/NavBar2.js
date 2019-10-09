@@ -8,6 +8,17 @@ import './CSS/NavBarPrincipal.css';
 
 class NavBar2 extends Component{
 
+    constructor(props){
+        super(props);
+    }
+    tornaHome = () => {
+        this.props.history.push({pathname: "/home", state: this.props.stato});
+    }
+
+    logout = () =>{
+        this.props.history.push("/");
+    }
+
     render(){
         return(
 
@@ -16,13 +27,13 @@ class NavBar2 extends Component{
                 <Navbar bg="primary" variant="dark" sticky="top" 
                     style={{fontSize : '1.3em', paddingLeft : '48px', paddingRight : '48px', minWidth:"420px"}} >
                     
-                    <Button variant="primary" className="col-md-1" style={{color:"orange"}}>
+                    <Button variant="primary" className="col-md-1" style={{color:"orange"}} onClick={this.tornaHome}>
                         HOME
                     </Button>
                     <Navbar.Brand style={{textAlign:"center", marginRight:"-16px"}} className="col-md-10">
                             RECRUITING
                     </Navbar.Brand>
-                    <Button variant="primary" className="col-md-1" style={{color:"orange"}} className>
+                    <Button variant="primary" className="col-md-1" style={{color:"orange"}} onClick={this.logout}>
                         LOGOUT
                     </Button>
                 </Navbar>

@@ -30,7 +30,8 @@ class ProfileRow extends Component{
 
     mostraProfilo = ()=>{
         
-        this.props.history.push({pathname: "/profilo", state: this.props.risposta.id });
+        this.props.history.push({pathname: "/profilo", 
+            state: { idProfilo :this.props.risposta.id , idSelezionatore:this.props.idSelezionatore} });
 
     }
 
