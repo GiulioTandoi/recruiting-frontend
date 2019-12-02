@@ -3,8 +3,8 @@
 .header{
   background-image: url('./background.png');
   background-size: 100%;
-  background-position-y: 250px;
-  height:250px;
+  background-position-y: 240px;
+  height:240px;
   line-height: 200px;
   text-align: center;
 }

@@ -64,12 +64,13 @@ class Selezionatore extends Component{
                         
                         <Button onClick={this.mostraListaPreferiti}  
                                     className = "col-md-5 btn btn-secondary"
-                                     
+                                    style={{margin:"auto",  display: "block"}}
                             >LISTA PREFERITI</Button>
                         
                         <Button variant="outline-primary" onClick={this.modifica} 
                                     className ="col-md-5 btn btn-secondary"
-                                    style={{marginLeft:"80px"}}
+                                    style={{marginLeft:"auto",marginRight: "auto",
+                                      display: "block", marginTop:"16px"}}
 
                             >MODIFICA</Button>
                    
