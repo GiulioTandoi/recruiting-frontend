@@ -12,7 +12,7 @@ class Profilo extends Component{
     constructor(props){
         super(props);
         this.state={dettagliProfilo : []}
-        console.log("id "+ this.props.location.state);
+        console.log("id "+ this.props.location.state); //id del profilo
         console.log(this.props );
     }
 
