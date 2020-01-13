@@ -6,16 +6,17 @@ import React, {Component} from 'react';
 //import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import {DropdownButton, Dropdown} from 'react-bootstrap';
+import {DropdownButton, Dropdown, Form, Row, Col} from 'react-bootstrap';
 import {withRouter} from 'react-router-dom';
 import './CSS/NavBarPrincipal.css';
+import './CSS/Button.css';
 
-import FormControl from 'react-bootstrap/FormControl'
 
 class NavBarPrincipal extends Component{
     constructor(props){
         super(props);
-        this.state={dettaglioProfiloSeleionatore : []}
+        this.state={dettaglioProfiloSeleionatore : [], clicked: false}
+        
     }
   
     mostraSelezionatore = () => {
@@ -31,11 +32,14 @@ class NavBarPrincipal extends Component{
         this.props.history.push("/");
     }
 
+    setFormVisibility = () =>  {
+        this.setState({clicked : true});
+    }
    
     render (){
       
       return(
-          <div className="shadow1 mb-5 bg-white rounded" style={ { marginLeft : '2%', marginRight : '2%', marginTop: "1%" }} fluid = "true">
+        <div className="shadow1 mb-5 bg-white rounded" style={ { marginLeft : '2%', marginRight : '2%', marginTop: "1%" }} fluid = "true">
 
           <Navbar bg="primary" variant="dark" sticky="top" style={{fontSize : '1.3em', paddingLeft : '48px', paddingRight : '48px'}} >
               
@@ -47,15 +51,50 @@ class NavBarPrincipal extends Component{
                       <Dropdown.Item as="button" onClick={this.logout}>Logout</Dropdown.Item>
                   </DropdownButton>
               </Nav>
-              <Navbar.Brand style ={{marginLeft: "200px "}} >
+              <Navbar.Brand style ={{display:"block", textAlign:"center", marginRight:"auto", marginLeft: "auto"}} >
                     RECRUITING
               </Navbar.Brand>
               <Nav className="ml-auto" style={{fontSize : '0.95em'}}> 
-                <FormControl type="text" placeholder="Find Profile" className="shadow mr-md-2" style={{marginTop: "1.4%"}} />
-                <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} >SEARCH</Button>
+               
+                {!this.state.clicked &&
+                <Row>
+                    <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} onClick={this.setFormVisibility}>
+                        {!this.state.clicked && <p>SEARCH</p>}</Button>
+                </Row>}
+                
+                {this.state.clicked &&
+                <Row>
+                    <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} >
+                        SHOW PROFILE</Button>
+                </Row>}
+                
+                
               </Nav>
           </Navbar>
-      </div>
+          {this.state.clicked &&
+                    <Row style = {{padding: "48px", marginLeft: "15px"}}>
+                        
+                        <Form style ={{display: "block", marginLeft: "auto", marginRight: "auto"}}>
+                        <p style={{color: "red"}}>*E' necessario compilare almeno un  campo del form per la ricerca</p>
+                            <Row>
+                                <Col>
+                                <Form.Control placeholder="First name" />
+                                </Col>
+                                <Col>
+                                <Form.Control placeholder="Last name" />
+                                </Col>
+                                <Col>
+                                <Form.Control placeholder="Age" />
+                                </Col>
+                                <Col>
+                                <Form.Control placeholder="Qualification" />
+                                </Col>
+                            </Row>
+                            
+                        </Form>
+                    </Row>
+                }
+        </div>
       );
     }
 

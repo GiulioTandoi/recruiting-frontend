@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {ListGroup} from 'react-bootstrap';
 import './CSS/Selezionatore.css';
-import './CSS/Selezionatore.css'
-import {Row} from 'react-bootstrap';
-
+import './CSS/Button.css';
+import NavBar2 from './NavBar2';
 
 class ListaPreferiti extends Component{
     constructor(props){
@@ -39,21 +38,20 @@ class ListaPreferiti extends Component{
 
     render(){
         return(
-            <div className="lista">
-                <Row>
-                   
-                    <p className="home">Torna in Home</p>
-                </Row>
-                <ListGroup.Item variant="primary" action onClick={this.mostraLink} style={{textAlign : "center"}}>
-                    Ottieni link a lista 
-                </ListGroup.Item>
-                {this.state.link && <p>http://localhost:8080/listaPreferiti?id={this.props.location.state}</p>}
-                <ListGroup>
-                    {this.state.listaPreferiti.map((el,i) =><ListGroup.Item key={i} >{el.nome} {el.cognome}</ListGroup.Item>)}
-                </ListGroup>
+           <div>
+                <NavBar2 stato={this.props.location.state}></NavBar2>
+                <div className="lista">
+                    <ListGroup.Item variant="primary" action onClick={this.mostraLink} style={{textAlign : "center"}}>
+                        Ottieni link a lista 
+                    </ListGroup.Item>
+                    {this.state.link && <p>http://localhost:8080/listaPreferiti?id={this.props.location.state}</p>}
+                    <ListGroup>
+                        {this.state.listaPreferiti.map((el,i) =><ListGroup.Item key={i} >{el.nome} {el.cognome}</ListGroup.Item>)}
+                    </ListGroup>
 
-                {this.state.vuoto && <h5>La lista dei preferiti è vuota</h5>}
+                    {this.state.vuoto && <h5>La lista dei preferiti è vuota</h5>}
 
+                </div>
             </div>
         );
     }

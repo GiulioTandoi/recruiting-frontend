@@ -37,7 +37,7 @@ class Home extends Component{
         console.log("Questo è l'id che viene passato al Selezionatore " +state);
         return(
             
-            <div className="App container-fluid" style = {{ paddingLeft : '0px', paddingRight : '0px'}}>
+            <div className=" container-fluid" style = {{ paddingLeft : '0px', paddingRight : '0px'}}>
                 
                 <NavBarPrincipal id={state}></NavBarPrincipal>
                 <Container style={{alignItems : "normal", display: "block", width : "60%"}}>
