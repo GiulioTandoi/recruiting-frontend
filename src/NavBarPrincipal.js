@@ -23,6 +23,14 @@ class NavBarPrincipal extends Component{
         console.log("Id " + this.props.id)
     }
 
+    mostraListaPreferiti = () => {
+        this.props.history.push({pathname: "/listaPreferiti", state: this.props.id });
+    }
+
+    logout = () =>{
+        this.props.history.push("/");
+    }
+
    
     render (){
       
@@ -34,9 +42,9 @@ class NavBarPrincipal extends Component{
               <Nav className ="mr-auto ">
               <DropdownButton id="dropdown-item-button" title="MYACCOUNT">
                       <Dropdown.Item as="button" onClick={this.mostraSelezionatore}>View your Profile</Dropdown.Item>
-                      <Dropdown.Item as="button">Favourite List</Dropdown.Item>
+                      <Dropdown.Item as="button" onClick={this.mostraListaPreferiti}>Favourite List</Dropdown.Item>
                       <Dropdown.Divider/>
-                      <Dropdown.Item as="button">Logout</Dropdown.Item>
+                      <Dropdown.Item as="button" onClick={this.logout}>Logout</Dropdown.Item>
                   </DropdownButton>
               </Nav>
               <Navbar.Brand style ={{marginLeft: "200px "}} >

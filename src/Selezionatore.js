@@ -44,9 +44,11 @@ class Selezionatore extends Component{
         this.props.history.push({pathname : "/modificaSelezionatore" , state : this.props.location.state});
     }
 
+    
+
     render(){
         let stato ;
-        if (this.state.dettaglioProfiloSelezionatore.stato ==null){
+        if (this.state.dettaglioProfiloSelezionatore.stato ==null || this.state.dettaglioProfiloSelezionatore.stato === ""){
             stato= "Stato assente";
         }else {
             stato = this.state.dettaglioProfiloSelezionatore.stato;

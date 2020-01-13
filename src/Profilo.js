@@ -12,7 +12,7 @@ class Profilo extends Component{
     constructor(props){
         super(props);
         this.state={dettagliProfilo : []}
-        console.log("id "+ this.props.location.state);
+        console.log("id "+ this.props.location.state.idProfilo);
         console.log(this.props );
     }
 
@@ -20,7 +20,7 @@ class Profilo extends Component{
         const apiUrl = "http://localhost:8080/profilo";
         axios.get(apiUrl,{
             params: {
-                id : this.props.location.state
+                id : this.props.location.state.idProfilo
             }
         }).then(
             response => {
