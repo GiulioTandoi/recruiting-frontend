@@ -16,15 +16,15 @@ class NavBarPrincipal extends Component{
     constructor(props){
         super(props);
         this.state={dettaglioProfiloSeleionatore : [], clicked: false}
-        
+        console.log(this.props.id)
     }
-  
-    mostraSelezionatore = () => {
+
+    showSelezionatore = () => {
         this.props.history.push({pathname: "/selezionatore", state: this.props.id });
         console.log("Id " + this.props.id)
     }
 
-    mostraListaPreferiti = () => {
+    showListaPreferiti = () => {
         this.props.history.push({pathname: "/listaPreferiti", state: this.props.id });
     }
 
@@ -35,6 +35,17 @@ class NavBarPrincipal extends Component{
     setFormVisibility = () =>  {
         this.setState({clicked : true});
     }
+
+    sendData = (event) => {
+        var listaStateHome = [];
+
+        listaStateHome[0] = this.props.id;
+        listaStateHome[1] = event.target.value;
+        listaStateHome[2] = true; //valore che mi indica nella home se ho effettuato la ricerca o no
+        this.props.history.push({pathname: "/home", state: listaStateHome})
+        console.log("Questo è l'id inserito in listaStateHome "+listaStateHome[0])
+    }
+
    
     render (){
       
@@ -45,8 +56,8 @@ class NavBarPrincipal extends Component{
               
               <Nav className ="mr-auto ">
               <DropdownButton id="dropdown-item-button" title="MYACCOUNT">
-                      <Dropdown.Item as="button" onClick={this.mostraSelezionatore}>View your Profile</Dropdown.Item>
-                      <Dropdown.Item as="button" onClick={this.mostraListaPreferiti}>Favourite List</Dropdown.Item>
+                      <Dropdown.Item as="button" onClick={this.showSelezionatore}>View your Profile</Dropdown.Item>
+                      <Dropdown.Item as="button" onClick={this.showListaPreferiti}>Favourite List</Dropdown.Item>
                       <Dropdown.Divider/>
                       <Dropdown.Item as="button" onClick={this.logout}>Logout</Dropdown.Item>
                   </DropdownButton>
@@ -75,19 +86,17 @@ class NavBarPrincipal extends Component{
                     <Row style = {{padding: "48px", marginLeft: "15px"}}>
                         
                         <Form style ={{display: "block", marginLeft: "auto", marginRight: "auto"}}>
-                        <p style={{color: "red"}}>*E' necessario compilare almeno un  campo del form per la ricerca</p>
+                        <p style={{color: "red"}}>* Seleziona un campo specifico di ricerca</p>
                             <Row>
                                 <Col>
-                                <Form.Control placeholder="First name" />
+                                <DropdownButton id="dropdown-item-button" title="SEARCH FOR">
+                                    <Dropdown.Item as="button" value = "Name">Name</Dropdown.Item>
+                                    <Dropdown.Item as="button" value = "Age">Age</Dropdown.Item>
+                                    <Dropdown.Item as="button" value = "Qualification">Qualification</Dropdown.Item>
+                                </DropdownButton>
                                 </Col>
                                 <Col>
-                                <Form.Control placeholder="Last name" />
-                                </Col>
-                                <Col>
-                                <Form.Control placeholder="Age" />
-                                </Col>
-                                <Col>
-                                <Form.Control placeholder="Qualification" />
+                                <Form.Control placeholder="Type here" onChange ={this.sendData}/>
                                 </Col>
                             </Row>
                             
