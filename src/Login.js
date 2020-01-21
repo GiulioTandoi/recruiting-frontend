@@ -8,8 +8,6 @@ import axios from 'axios';
 import { Alert } from 'react-bootstrap';
 
 
-
-
 class Login extends Component {
     constructor (props){
         super (props);
@@ -37,13 +35,11 @@ class Login extends Component {
             response =>{
                 const {data} = response;
                 
-                var listaStateHome = [];
-                listaStateHome[0] = data;
                 if(data!==-1){
                    // nella riga seguente sto aggiungendo un oggetto per il routing, posso usare il push perchè Home è renderizzato come oggetto Route in App.js
                    // Ho bisogno quindi di usare questo sistema perchè non posso renderizzare Home in Login (se così fosse stateo avrei potuto passare id direttamente nelle props come argomento)
                     this.props.history.push({pathname:"/home",  
-                    state:listaStateHome
+                    state:{id: data, value: null ,searched : false, searchType : null}
                     })
                 
                 }
@@ -60,7 +56,7 @@ class Login extends Component {
     
 
     redirectRegister=() => {
-        this.props.history.push("/register")
+        this.props.history.push({pathname : "/register"})
     }
 
     render(){

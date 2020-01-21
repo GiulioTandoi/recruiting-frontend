@@ -35,6 +35,9 @@ class Selezionatore extends Component{
     componentDidMount = () => {
         this.mostradati();
     }
+    componentDidUpdate = () =>{
+        this.mostradati();
+    }
 
     mostraListaPreferiti =() => {
         this.props.history.push({pathname : "/listaPreferiti" , state : this.props.location.state});

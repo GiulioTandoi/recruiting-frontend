@@ -15,8 +15,9 @@ import './CSS/Button.css';
 class NavBarPrincipal extends Component{
     constructor(props){
         super(props);
-        this.state={dettaglioProfiloSeleionatore : [], clicked: false}
-        console.log(this.props.id)
+        this.sendData = this.sendData.bind(this)
+        this.state={clicked: false, value : "", searchType : ""}
+        console.log("L'id del selezionatore nella NavBarPrincipal è "+this.props.id)
     }
 
     showSelezionatore = () => {
@@ -36,16 +37,22 @@ class NavBarPrincipal extends Component{
         this.setState({clicked : true});
     }
 
-    sendData = (event) => {
-        var listaStateHome = [];
-
-        listaStateHome[0] = this.props.id;
-        listaStateHome[1] = event.target.value;
-        listaStateHome[2] = true; //valore che mi indica nella home se ho effettuato la ricerca o no
-        this.props.history.push({pathname: "/home", state: listaStateHome})
-        console.log("Questo è l'id inserito in listaStateHome "+listaStateHome[0])
+    setValue = (event) => {
+        this.setState({value: event.target.value})
+        console.log("Il value settato è "+ event.target.value);
     }
 
+    sendData = (event) => {
+        
+        this.props.history.push({pathname: "/home", state:
+                 {id: this.props.id, value : this.state.value, searched : true, searchType : this.state.searchType}})
+        console.log("Id "+this.props.id+" Value "+this.state.value+" Searched "+true)
+    }
+
+    setSearchType = (event) =>{
+        this.setState({searchType : event.target.value});
+        console.log("Valore del searchType "+this.state.searchType);
+    }
    
     render (){
       
@@ -75,7 +82,7 @@ class NavBarPrincipal extends Component{
                 
                 {this.state.clicked &&
                 <Row>
-                    <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} >
+                    <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} onClick={this.sendData} >
                         SHOW PROFILE</Button>
                 </Row>}
                 
@@ -90,13 +97,13 @@ class NavBarPrincipal extends Component{
                             <Row>
                                 <Col>
                                 <DropdownButton id="dropdown-item-button" title="SEARCH FOR">
-                                    <Dropdown.Item as="button" value = "Name">Name</Dropdown.Item>
-                                    <Dropdown.Item as="button" value = "Age">Age</Dropdown.Item>
-                                    <Dropdown.Item as="button" value = "Qualification">Qualification</Dropdown.Item>
+                                    <Dropdown.Item as="button" name = "Name" onClick={this.setSearchType}>Name</Dropdown.Item>
+                                    <Dropdown.Item as="button" name = "Age"  onClick={this.setSearchType}>Age</Dropdown.Item>
+                                    <Dropdown.Item as="button" name = "Qualification" onClick={this.setSearchType}>Qualification</Dropdown.Item>
                                 </DropdownButton>
                                 </Col>
                                 <Col>
-                                <Form.Control placeholder="Type here" onChange ={this.sendData}/>
+                                <Form.Control placeholder="Type here" id = "form" onChange = {this.setValue}/>
                                 </Col>
                             </Row>
                             

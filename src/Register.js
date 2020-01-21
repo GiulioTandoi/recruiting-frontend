@@ -9,21 +9,26 @@ class Register extends Component{
         super(props);
         this.state={nome:"", cognome:"",password:"", email:"", stato:""};
         console.log("Ciao Register");
+        console.log(this.props);
     }
 
-    componentDidMount=()=>{
-        const apiUrl ="http://localhost:8080/registration";
-        axios.post(
-            apiUrl,
-            {   nome: this.state.nome,
-                cognome:this.state.cognome,
-                email:this.state.email,
-                password : this.state.password,
-                stato: this.state.stato
-            }
-        ).then(response=>
-            this.props.history.push("/")
-        );
+    registerMe=()=>{
+        if (this.state.nome !== "" && this.state.cognome!== "" && this.state.email!=="" && this.state.password!==""){
+            const apiUrl ="http://localhost:8080/registration";
+            axios.post(
+                apiUrl,
+                {   nome: this.state.nome,
+                    cognome:this.state.cognome,
+                    email:this.state.email,
+                    password : this.state.password,
+                    stato: this.state.stato
+                }
+            ).then(response=>
+                this.props.history.push("/")
+            );
+        }else {
+            window.alert("Non hai inserito i dati di registrazione in modo corretto")
+        }
     }
 
     onChangeNome=(e)=>{
@@ -49,7 +54,7 @@ class Register extends Component{
     render(){
 
         return(
-            <Card className="shadow cardRegister"  > 
+            <Card className="shadow cardRegister"> 
                 <div>
                     <p className="text" style ={{paddingTop : "26px"}}>RecruitING</p>
                     <p className="text1" style={{textAlign : "center"}}>REGISTRATION</p>
@@ -75,20 +80,15 @@ class Register extends Component{
                         <Form.Label>Stato</Form.Label>
                         <Form.Control name="stato"  placeholder="Enter state" onChange = {this.onChangeStato} />
                     </Form.Group>
-                    <Button className="btn btn-secondary" style= {{width: "100%"}} type="button" onClick={this.componentDidMount} >
+                    <Button className="btn btn-secondary" style= {{width: "100%"}} type="button" onClick={this.registerMe} >
                         DONE!
                     </Button>
                 </Form>
-            </Card>  
-
-
+            </Card>
 
         );
 
-
     }
-
-
 
 }
 
