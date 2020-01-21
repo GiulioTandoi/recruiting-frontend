@@ -16,7 +16,7 @@ class NavBarPrincipal extends Component{
     constructor(props){
         super(props);
         this.sendData = this.sendData.bind(this)
-        this.state={clicked: false, value : "", searchType : ""}
+        this.state={clicked: false, value : "", searchType : "", id :0}
         console.log("L'id del selezionatore nella NavBarPrincipal è "+this.props.id)
     }
 
@@ -39,19 +39,21 @@ class NavBarPrincipal extends Component{
 
     setValue = (event) => {
         this.setState({value: event.target.value})
-        console.log("Il value settato è "+ event.target.value);
+        this.setState({id:this.props.id})
+        console.log("Il value settato è "+ event.target.value+" l'id settato è "+this.state.id);
     }
 
     sendData = (event) => {
-        
+        console.log("Id "+this.state.id+" Value "+this.state.value+" Searched "+true)
         this.props.history.push({pathname: "/home", state:
-                 {id: this.props.id, value : this.state.value, searched : true, searchType : this.state.searchType}})
-        console.log("Id "+this.props.id+" Value "+this.state.value+" Searched "+true)
+                 {id: this.state.id, value : this.state.value, searched : true, searchType : "Name"}})
+       
     }
 
     setSearchType = (event) =>{
-        this.setState({searchType : event.target.value});
-        console.log("Valore del searchType "+this.state.searchType);
+        console.log("Valore del searchType "+event.target.name);
+        this.setState({searchType : event.target.name});
+        
     }
    
     render (){
@@ -95,13 +97,7 @@ class NavBarPrincipal extends Component{
                         <Form style ={{display: "block", marginLeft: "auto", marginRight: "auto"}}>
                         <p style={{color: "red"}}>* Seleziona un campo specifico di ricerca</p>
                             <Row>
-                                <Col>
-                                <DropdownButton id="dropdown-item-button" title="SEARCH FOR">
-                                    <Dropdown.Item as="button" name = "Name" onClick={this.setSearchType}>Name</Dropdown.Item>
-                                    <Dropdown.Item as="button" name = "Age"  onClick={this.setSearchType}>Age</Dropdown.Item>
-                                    <Dropdown.Item as="button" name = "Qualification" onClick={this.setSearchType}>Qualification</Dropdown.Item>
-                                </DropdownButton>
-                                </Col>
+                                
                                 <Col>
                                 <Form.Control placeholder="Type here" id = "form" onChange = {this.setValue}/>
                                 </Col>

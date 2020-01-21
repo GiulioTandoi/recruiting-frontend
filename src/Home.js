@@ -43,18 +43,29 @@ class Home extends Component{
         if (this.props.location.state.searched === true){
 
             const apiUrl = "http://localhost:8080/search";
-             axios.get(apiUrl, 
-                {id : this.props.location.state.id,
-                searchType : this.props.location.state.searchType})
-                 .then(response=>{
-                    const {profili} = response.data;
-                    var lista = [];
+            axios.get(apiUrl, 
+            {
+                params: 
+                    {searchingType : "Name", 
+                    value : this.props.location.state.value}})
+                .then(response=>{
+                const {profili} = response.data;
+                console.log(JSON.stringify(profili));
+                var lista = [];
+                if (profili.length !== 0){
                     for (var i =0 ; i < profili.length ; i++){
                         lista[i]=profili[i]; 
                     }
                     this.setState({listaelementi:lista});
+                }else {
+                    window.alert("La ricerca non ha prodotto risultati")
                 }
+                
+            }
             )
+            .catch(error => {
+                console.log(error);
+            });
         }
     }
 
