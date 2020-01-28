@@ -50,7 +50,7 @@ class NavBarPrincipal extends Component{
             {
                 params: 
                     {searchingType : "Name", 
-                    value : event.target.value}})
+                    value : this.state.value}})
                 .then(response=>{
                 const {profili} = response.data;
                 console.log(JSON.stringify(profili));
