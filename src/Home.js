@@ -14,30 +14,6 @@ class Home extends Component{
 
     }
 
-    componentDidMount = () => {
-        
-        const apiUrl = "http://localhost:8080/home";  // bisogna cambiare il metodo in modo che faccia una post
-        axios.get(apiUrl)
-          .then(response => {
-            const {profili} = response.data; //data è il campo di risposta di un Json all'interno del quale ci sono i dati che mi servono per la visualizzazione 
-            console.log(JSON.stringify(profili));
-            var lista= [];
-            for (var i =0 ; i < profili.length ; i++){
-                lista[i]=profili[i]; 
-            }
-            this.setState({listaelementi:lista});
-            
-          })
-          .catch(error => {
-            console.log(error);
-          });
-          
-        
-    }
-
-
-  
-
     componentDidUpdate() {
         
         console.log(this.state.searched)
@@ -84,7 +60,7 @@ class Home extends Component{
                     
                     <Row >
                         <Col> 
-                            {this.state.listaelementi.map((el,i) => <ProfileRow risposta={el} idSelezionatore={stato} key ={i}/>)} 
+                            {this.props.listaelementi.map((el,i) => <ProfileRow risposta={el} idSelezionatore={stato} key ={i}/>)} 
                         </Col>
                     </Row>
 
