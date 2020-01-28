@@ -23,7 +23,7 @@ class ProfileRow extends Component{
                 idProfilo : this.state.id,
                 idSelezionatore : this.props.idSelezionatore
             }).then(
-                console.log("Ballo")
+                window.alert("Profilo aggiunto ai preferiti")
             )
      
     }

@@ -33,18 +33,23 @@ class Login extends Component {
         })
         .then(
             response =>{
-                const {data} = response;
-                
+                const {data} = response
+                console.log(data)
                 if(data!==-1){
                    // nella riga seguente sto aggiungendo un oggetto per il routing, posso usare il push perchè Home è renderizzato come oggetto Route in App.js
                    // Ho bisogno quindi di usare questo sistema perchè non posso renderizzare Home in Login (se così fosse stateo avrei potuto passare id direttamente nelle props come argomento)
                     this.props.history.push({pathname:"/home",  
-                    state:{id: data, value: null ,searched : false, searchType : null}
+                    state:{id: data}
                     })
                 
                 }
+                
             }
-        );
+        ).catch(Error => {
+            if (this.state.email !== "" || this.state.password !== ""){
+                window.alert("Email o password errate")
+            }
+        });
     }
 
     componentDidCatch=(error, info) =>{
@@ -61,7 +66,7 @@ class Login extends Component {
 
     render(){
         if (this.state.hasError) {
-            // You can render any custom fallback UI
+            // You can render any custom fallback UI 
             return <Alert>Something went wrong.</Alert>;
           }
 
