@@ -22,7 +22,7 @@ class Selezionatore extends Component{
         const apiUrl ="http://localhost:8080/dettagliSelezionatore";
         axios.get(apiUrl,{
                 params : {
-                    id: this.props.location.state
+                    id: this.props.location.state.idSelezionatore
                 }
             }
         ).then(response => {
@@ -35,10 +35,10 @@ class Selezionatore extends Component{
     componentDidMount = () => {
         this.mostradati();
     }
-    componentDidUpdate = () =>{
+    
+    componentWillReceiveProps(){
         this.mostradati();
     }
-
     mostraListaPreferiti =() => {
         this.props.history.push({pathname : "/listaPreferiti" , state : this.props.location.state});
     }
@@ -57,8 +57,8 @@ class Selezionatore extends Component{
     
         return(
             <div style={{minWidth:"420px"}}>
-            <NavBar2 stato={this.state.dettaglioProfiloSelezionatore}></NavBar2>
-            <div className= "col-lg-12" style={{ width: '35%', height : '40%', marginTop : '3%', margin:"auto" }} >
+            <NavBar2 idSelezionatore={this.state.dettaglioProfiloSelezionatore.id}></NavBar2>
+            <div className= "col-lg-12" style={{ width: '35%', height : '40', margin:"auto" }} >
 
                     
                     <Image variant="top" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" 

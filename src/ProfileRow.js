@@ -11,9 +11,14 @@ class ProfileRow extends Component{
 
     constructor(props){
         super(props);
-        this.state = {id : this.props.risposta.id , link : false}
+        this.state = {id : this.props.risposta.id , link : false, imageStr : ""}
+        
         console.log("Id " + this.props.risposta.id + " " +this.props.idSelezionatore)
     }
+
+    componentDidMount () {
+        this.decodeImg();
+    }    
 
     aggiungiPreferito = () =>{
         const apiUrl = "http://localhost:8080/inserisciPreferito";
@@ -31,7 +36,7 @@ class ProfileRow extends Component{
     mostraProfilo = ()=>{
         
         this.props.history.push({pathname: "/profilo", 
-            state: { idProfilo :this.props.risposta.id} });
+            state: { profilo :this.props.risposta, idSelezionatore : this.props.idSelezionatore} });
 
     }
 
@@ -39,6 +44,12 @@ class ProfileRow extends Component{
         evt.preventDefault();
         this.setState({link :true});
     }
+
+    decodeImg = () => {
+        
+        this.setState({imageStr : "data:image/jpeg;base64,"+this.props.risposta.image});
+    }
+
     render(){
 
         return(
@@ -70,8 +81,8 @@ class ProfileRow extends Component{
                             </div>
                         </div>
                         
-                        <div className="col">
-                            <Image align="right" alt="Smiley face" height="171px" weight="180px" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" roundedCircle></Image>
+                        <div className="col" display="block" >
+                            <Image align="right" alt="Smiley face" height="90%" width="40%" src={this.state.imageStr} roundedCircle></Image>
                         </div>
                     </div>
                 </Card.Body>

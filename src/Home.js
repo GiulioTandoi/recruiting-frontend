@@ -72,7 +72,7 @@ class Home extends Component{
     }
 
     showSelezionatore = () => {
-        this.props.history.push({pathname: "/selezionatore", state: this.state.idSelezionatore });
+        this.props.history.push({pathname: "/selezionatore", state: {idSelezionatore :this.state.idSelezionatore} });
         console.log("Id " +  this.state.idSelezionatore)
     }
 

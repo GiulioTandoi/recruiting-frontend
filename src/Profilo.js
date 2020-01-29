@@ -11,38 +11,49 @@ class Profilo extends Component{
 
     constructor(props){
         super(props);
-        this.state={dettagliProfilo : []}
-        console.log("id "+ this.props.location.state.idProfilo);
-        console.log(this.props );
+        this.state={dettagliProfilo : [], imageStr : ""}
+        console.log("id "+ this.props.location.state.profilo.id);
+        
+        //console.log(this.props);
     }
 
     componentDidMount = () => {
         const apiUrl = "http://localhost:8080/profilo";
         axios.get(apiUrl,{
             params: {
-                id : this.props.location.state.idProfilo
+                id : this.props.location.state.profilo.id
             }
         }).then(
             response => {
                 const {data} = response;
-                console.log(JSON.stringify(data));
+                //console.log(JSON.stringify(data));
                 this.setState({dettagliProfilo: data});
-            });
+        });
+
+        this.decodeImg();
             
+    }
+
+    decodeImg = () => {
+        
+        this.setState({imageStr : "data:image/jpeg;base64,"+this.props.location.state.profilo.image});
+
     }
 
     render(){
         return(
             <div>
-                <NavBar2 stato={this.props.location.state}></NavBar2>
-                <Card className="shadow p-3 mb-5 bg-white rounded col-lg-12" 
-                    style={{ width: '35%', height : '40%', marginTop : '5%', marginLeft:"auto", marginRight:"auto", minWidth:"200px " }}>
-                    <Image variant="top" src="https://bestcellphonespyapps.com/wp-content/uploads/2017/09/pexels-photo-220453-1-1001x1024.jpeg" roundedCircle className ="image shadow" />
+                <NavBar2 idSelezionatore={this.props.location.state.idSelezionatore}></NavBar2>
+                <Card className="shadow bg-white " 
+                    style={{paddingTop:'2%', width: '35%', height : '40%', margin: "auto" }}>
+                    <Image alt="Smiley face" src={this.state.imageStr} roundedCircle className ="image shadow" />
+                    
                     <Card.Body>
                         <Card.Title className="generale">{this.state.dettagliProfilo.nome} {this.state.dettagliProfilo.cognome}</Card.Title>
-                        <Card.Text className="corpoTesto">
+                        <Card.Text className="corpoTesto" style={{textAlign : "left", paddingLeft:"10%"}}>
+                            Età: {this.state.dettagliProfilo.eta} <br/><br/>
                             Qualifica:  {this.state.dettagliProfilo.qualifica}<br/> <br/>
-                            Disponibilità: {this.state.dettagliProfilo.disponibilita}<br/> <br/>
+                            Disponibilità trasferte: {this.state.dettagliProfilo.disponibilita}<br/> <br/>
                             Link al profilo: {this.state.dettagliProfilo.link}
                         </Card.Text><br/> 
                     </Card.Body>
