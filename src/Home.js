@@ -1,33 +1,59 @@
-import React , {Component} from 'react';
-import Container from 'react-bootstrap/Container';
-import ProfileRow from './ProfileRow.js';
+//import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+import Button from 'react-bootstrap/Button';
+import React, {Component} from 'react';
+//import Dropdown from 'react-bootstrap/Dropdown';
+//import DropdownButton from 'react-bootstrap/DropdownButton';
+//import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import {DropdownButton, Dropdown, Form, Row, Col, Container} from 'react-bootstrap';
+import {withRouter} from 'react-router-dom';
+import './CSS/NavBarPrincipal.css';
+import './CSS/Button.css';
+import ProfileRow from './ProfileRow.js'
 import axios from 'axios';
-import {Col, Row} from 'react-bootstrap';
+
 
 class Home extends Component{
-    
     constructor(props){
         super(props);
-        this.state={listaelementi :[]};
-        // Quando passo più elementi nello state li passo come una lista e vi accedo semplicemente da state[idElementoLista]
-        console.log("L'id del selezionatore è " );
-
+        this.sendData = this.sendData.bind(this)
+        this.state={clicked: false, value : "", searchType : "",
+         idSelezionatore :this.props.location.state.id, listaelementi : []}
+        console.log("L'id del selezionatore nella Home è "+this.state.idSelezionatore)
     }
 
-    componentDidUpdate() {
+    componentDidMount = () => {
         
-        console.log(this.state.searched)
-        if ("this.state.searched" === true){
+        const apiUrl = "http://localhost:8080/home";  // bisogna cambiare il metodo in modo che faccia una post
+        axios.get(apiUrl)
+          .then(response => {
+            const {profili} = response.data; //data è il campo di risposta di un Json all'interno del quale ci sono i dati che mi servono per la visualizzazione 
+            console.log(JSON.stringify(profili));
+            var lista= [];
+            for (var i =0 ; i < profili.length ; i++){
+                lista[i]=profili[i]; 
+            }
+            this.setState({listaelementi:lista});
+            
+          })
+          .catch(error => {
+            console.log(error);
+          });
+          
+        
+    }
 
-            const apiUrl = "http://localhost:8080/search";
+    filterProfiles = (event) => {
+        const apiUrl = "http://localhost:8080/search";
             axios.get(apiUrl, 
             {
                 params: 
-                    {searchingType : "Name", 
-                    value : ""}})
+                    {
+                    value : this.state.value}})
                 .then(response=>{
                 const {profili} = response.data;
-                console.log(JSON.stringify(profili));
+                console.log(JSON.stringify(response));
                 var lista = [];
                 if (profili.length !== 0){
                     for (var i =0 ; i < profili.length ; i++){
@@ -37,22 +63,102 @@ class Home extends Component{
                 }else {
                     window.alert("La ricerca non ha prodotto risultati")
                 }
-                this.setState({searched : false})
+                
             }
             )
             .catch(error => {
                 console.log(error);
-            });
-           
-        }
+        });
     }
 
-    render (){
+    showSelezionatore = () => {
+        this.props.history.push({pathname: "/selezionatore", state: this.state.idSelezionatore });
+        console.log("Id " +  this.state.idSelezionatore)
+    }
+
+    showListaPreferiti = () => {
+        this.props.history.push({pathname: "/listaPreferiti", state:  this.state.idSelezionatore });
+    }
+
+    logout = () =>{
+        this.props.history.push("/");
+    }
+
+    setFormVisibility = () =>  {
+        this.setState({clicked : true});
+    }
+
+    setValue = (event) => {
+        this.setState({value : event.target.value})
+        console.log("Il value settato è "+ event.target.value+" l'id settato è "+this.state.idSelezionatore);
+    }
+
+    sendData = (event) => {
+        console.log("Id "+this.state.id+" Value "+this.state.value+" Searched "+true)
+        this.props.history.push({pathname: "/home", state:
+                 {id: this.state.id, value : this.state.value, searched : true, searchType : "Name"}})
+       
+    }
+
+    setSearchType = (event) =>{
+        console.log("Valore del searchType "+event.target.name);
+        this.setState({searchType : event.target.name});
         
-        const stato = 1;  // il campo state della location mi serve per passare oggetti tra le pagine (vedi Login.js riga 41 e 42)
-        console.log("Questo è l'id che viene passato al Selezionatore " +stato);
-        return(
+    }
+   
+    render (){
+      return(
+        <div>
+            <div className="shadow1 mb-5 bg-white rounded" style={ { marginLeft : '2%', marginRight : '2%', marginTop: "1%" }} fluid = "true">
+
+            <Navbar bg="primary" variant="dark" sticky="top" style={{fontSize : '1.3em', paddingLeft : '48px', paddingRight : '48px'}} >
+                
+                <Nav className ="mr-auto ">
+                <DropdownButton id="dropdown-item-button" title="MYACCOUNT">
+                        <Dropdown.Item as="button" onClick={this.showSelezionatore}>View your Profile</Dropdown.Item>
+                        <Dropdown.Item as="button" onClick={this.showListaPreferiti}>Favourite List</Dropdown.Item>
+                        <Dropdown.Divider/>
+                        <Dropdown.Item as="button" onClick={this.logout}>Logout</Dropdown.Item>
+                    </DropdownButton>
+                </Nav>
+                <Navbar.Brand style ={{display:"block", textAlign:"center", marginRight:"auto", marginLeft: "auto"}} >
+                        RECRUITING
+                </Navbar.Brand>
+                <Nav className="ml-auto" style={{fontSize : '0.95em'}}> 
+                
+                    {!this.state.clicked &&
+                    <Row>
+                        <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} onClick={this.setFormVisibility}>
+                            {!this.state.clicked && <p>SEARCH</p>}</Button>
+                    </Row>}
+                    
+                    {this.state.clicked &&
+                    <Row>
+                        <Button className="btn btn-secondary" style={{marginTop: "1.4%"}} onClick={this.filterProfiles} >
+                            SHOW PROFILE</Button>
+                    </Row>}
+                    
+                    
+                </Nav>
+            </Navbar>
+            {this.state.clicked &&
+                        <Row style = {{padding: "48px", marginLeft: "15px"}}>
+                            
+                            <Form style ={{display: "block", marginLeft: "auto", marginRight: "auto"}}>
+                            <p style={{color: "red"}}>* Seleziona un campo specifico di ricerca</p>
+                                <Row>
+                                    
+                                    <Col>
+                                    <Form.Control placeholder="Type here" id = "form" onChange = {this.setValue}/>
+                                    </Col>
+                                </Row>
+                                
+                            </Form>
+                        </Row>
+                    }
+
             
+            </div> 
             <div className="container-fluid" style = {{ paddingLeft : '0px', paddingRight : '0px'}}>
                 
                 
@@ -60,19 +166,17 @@ class Home extends Component{
                     
                     <Row >
                         <Col> 
-                            {this.props.listaelementi.map((el,i) => <ProfileRow risposta={el} idSelezionatore={stato} key ={i}/>)} 
+                            {this.state.listaelementi.map((el,i) => <ProfileRow risposta={el} idSelezionatore={this.state.idSelezionatore} key ={i}/>)} 
                         </Col>
                     </Row>
 
                 </Container>
             </div>
-
-        );
-
+        </div>
+      );
     }
-
 
 
 }
 
-export default Home;
+export default withRouter(Home);

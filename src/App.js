@@ -8,7 +8,8 @@ import Selezionatore from './Selezionatore.js';
 import ListaPreferiti from './ListaPreferiti.js';
 import ModificaSelezionatore from './ModificaSelezionatore';
 import Register from './Register.js';
-import NavBarPrincipal from './NavBarPrincipal.js';
+import Home from './Home.js';
+
 
 class App extends Component {
 
@@ -23,7 +24,7 @@ class App extends Component {
         <BrowserRouter>
         
           <Route exact path="/" component={Login}/>
-          <Route path ="/home" component={NavBarPrincipal}/> 
+          <Route path ="/home" component={Home}/> 
           <Route path="/profilo" component={Profilo}/>
           <Route path="/selezionatore" component={Selezionatore}></Route>
           <Route path="/listaPreferiti" component={ListaPreferiti}></Route>
