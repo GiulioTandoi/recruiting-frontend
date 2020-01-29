@@ -14,11 +14,11 @@ class ListaPreferiti extends Component{
 
     componentDidMount = () => {
         const apiUrl = "http://localhost:8080/listaPreferiti";
-        console.log(this.props.location.state);
+        console.log(this.props.location.state.idSelezionatore);
         axios.get(apiUrl, 
             {
                 params :{
-                id_selezionatore: this.props.location.state 
+                id_selezionatore: this.props.location.state.idSelezionatore 
             }
         }).then(response => {
             let {data} = response;
@@ -39,12 +39,12 @@ class ListaPreferiti extends Component{
     render(){
         return(
            <div>
-                <NavBar2 stato={this.props.location.state}></NavBar2>
+                <NavBar2 stato={this.props.location.state.idSelezionatore}></NavBar2>
                 <div className="lista">
                     <ListGroup.Item variant="primary" action onClick={this.mostraLink} style={{textAlign : "center"}}>
                         Ottieni link a lista 
                     </ListGroup.Item>
-                    {this.state.link && <p>http://localhost:8080/listaPreferiti?id={this.props.location.state}</p>}
+                    {this.state.link && <p>http://localhost:8080/listaPreferiti?id={this.props.location.state.idSelezionatore}</p>}
                     <ListGroup>
                         {this.state.listaPreferiti.map((el,i) =><ListGroup.Item key={i} >{el.nome} {el.cognome}</ListGroup.Item>)}
                     </ListGroup>

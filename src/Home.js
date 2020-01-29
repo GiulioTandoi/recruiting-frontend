@@ -53,12 +53,13 @@ class Home extends Component{
                     value : this.state.value}})
                 .then(response=>{
                 const {profili} = response.data;
-                console.log(JSON.stringify(response));
+                //console.log(JSON.stringify(response));
                 var lista = [];
                 if (profili.length !== 0){
                     for (var i =0 ; i < profili.length ; i++){
                         lista[i]=profili[i]; 
                     }
+                    
                     this.setState({listaelementi:lista});
                 }else {
                     window.alert("La ricerca non ha prodotto risultati")

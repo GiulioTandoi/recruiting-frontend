@@ -20,6 +20,11 @@ class ProfileRow extends Component{
         this.decodeImg();
     }    
 
+    componentWillReceiveProps(){
+        console.log("Chiamato will receive")
+        this.decodeImg();
+    }
+
     aggiungiPreferito = () =>{
         const apiUrl = "http://localhost:8080/inserisciPreferito";
         console.log(this.state.id + " " + this.props.idSelezionatore)

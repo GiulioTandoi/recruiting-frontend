@@ -40,11 +40,11 @@ class Selezionatore extends Component{
         this.mostradati();
     }
     mostraListaPreferiti =() => {
-        this.props.history.push({pathname : "/listaPreferiti" , state : this.props.location.state});
+        this.props.history.push({pathname : "/listaPreferiti" , state : {idSelezionatore : this.props.location.state.idSelezionatore}});
     }
 
     modifica =() => {
-        this.props.history.push({pathname : "/modificaSelezionatore" , state : this.props.location.state});
+        this.props.history.push({pathname : "/modificaSelezionatore" , state : {idSelezionatore :this.props.location.state.idSelezionatore}});
     }
 
     render(){

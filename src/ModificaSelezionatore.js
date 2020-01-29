@@ -40,7 +40,7 @@ class ModificaSelezionatore extends Component{
         axios.get(apiUrl,{
             params : 
                 {
-                    id: this.props.location.state
+                    id: this.props.location.state.idSelezionatore
                 }
 
         }).then(response =>{
@@ -62,14 +62,14 @@ class ModificaSelezionatore extends Component{
         const apiUrl = "http://localhost:8080/modificaDettagli";
         axios.post(apiUrl,
             {
-                id:this.props.location.state,
+                id: this.props.location.state.idSelezionatore,
                 nome:this.state.nome,
                 cognome:this.state.cognome,
                 email:this.state.email,
                 stato:this.state.stato
             }).then(
                 
-                this.props.history.push({pathname : "./selezionatore", state:this.props.location.state})
+                this.props.history.push({pathname : "./selezionatore", state:{idSelezionatore :this.props.location.state.idSelezionatore}})
             )
     }
 
