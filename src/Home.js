@@ -78,7 +78,8 @@ class Home extends Component{
     }
 
     showListaPreferiti = () => {
-        this.props.history.push({pathname: "/listaPreferiti", state:  this.state.idSelezionatore });
+        console.log("Id passato alla lista preferiti "+ this.state.idSelezionatore)
+        this.props.history.push({pathname: "/listaPreferiti", state: {idSelezionatore:  this.state.idSelezionatore} });
     }
 
     logout = () =>{
@@ -112,7 +113,7 @@ class Home extends Component{
         <div>
             <div className="shadow1 mb-5 bg-white rounded" style={ { marginLeft : '2%', marginRight : '2%', marginTop: "1%" }} fluid = "true">
 
-            <Navbar bg="primary" variant="dark" sticky="top" style={{fontSize : '1.3em', paddingLeft : '48px', paddingRight : '48px'}} >
+            <Navbar bg="primary" variant="dark" style={{fontSize : '1.3em', paddingLeft : '48px', paddingRight : '48px', position : 'sticky'}} >
                 
                 <Nav className ="mr-auto ">
                 <DropdownButton id="dropdown-item-button" title="MYACCOUNT">

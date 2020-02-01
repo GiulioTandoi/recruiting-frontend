@@ -11,7 +11,7 @@ class NavBar2 extends Component{
     constructor(props){
         super(props);
         
-        console.log("Ciao sono NavBar2 e questo è il mio id "+ this.props.idSelezionatore);
+        console.log("Ciao sono NavBar2 e questo è l'idSelezionatore "+ this.props.idSelezionatore);
     }
     tornaHome = () => {
         this.props.history.push({pathname: "/home", state: {id: this.props.idSelezionatore}});
