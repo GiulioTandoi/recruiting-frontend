@@ -4,6 +4,7 @@ import Image from 'react-bootstrap/Image';
 import { withRouter } from 'react-router-dom';
 import { FavoriteOutlined } from '@material-ui/icons';
 import axios from 'axios';
+import { Alert } from 'react-bootstrap';
 
 
 
@@ -11,7 +12,7 @@ class ProfileRow extends Component{
 
     constructor(props){
         super(props);
-        this.state = {id : this.props.risposta.id , link : false, imageStr : ""}
+        this.state = {id : this.props.risposta.id , link : false, nothingFound : false}
         
         console.log("Id " + this.props.risposta.id + " " +this.props.idSelezionatore)
     }
@@ -33,7 +34,7 @@ class ProfileRow extends Component{
                 idProfilo : this.state.id,
                 idSelezionatore : this.props.idSelezionatore
             }).then(
-                window.alert("Profilo aggiunto ai preferiti")
+                this.setState({nothingFound : true})
             )
      
     }
@@ -50,19 +51,17 @@ class ProfileRow extends Component{
         this.setState({link :true});
     }
 
-    oppela = () => {
+    decodeImg = () => {
         return "data:image/jpeg;base64,"+this.props.risposta.image;
     }
 
-    decodeImg = () => {
-        
-        this.setState({imageStr : "data:image/jpeg;base64,"+this.props.risposta.image});
-    }
+    
 
     render(){
 
         return(
             <Card style={{marginTop : '16px', fontSize : '1.1em'} }>
+                {this.state.nothingFound && <Alert variant = {"success"} timeout = "40">Profilo aggiunto ai preferiti</Alert>}
                 <Card.Header as="h5" >{this.props.risposta.nome} {this.props.risposta.cognome}</Card.Header>
                 <Card.Body>
                     <div className="row">
@@ -91,7 +90,7 @@ class ProfileRow extends Component{
                         </div>
                         
                         <div className="col" display="block" >
-                            <Image align="right" alt="Smiley face" height="90%" width="40%" src={this.oppela()} roundedCircle></Image>
+                            <Image align="right" alt="Smiley face" height="90%" width="40%" src={this.decodeImg()} roundedCircle></Image>
                         </div>
                     </div>
                 </Card.Body>
