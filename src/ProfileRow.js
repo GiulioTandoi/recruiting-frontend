@@ -50,6 +50,10 @@ class ProfileRow extends Component{
         this.setState({link :true});
     }
 
+    oppela = () => {
+        return "data:image/jpeg;base64,"+this.props.risposta.image;
+    }
+
     decodeImg = () => {
         
         this.setState({imageStr : "data:image/jpeg;base64,"+this.props.risposta.image});
@@ -87,7 +91,7 @@ class ProfileRow extends Component{
                         </div>
                         
                         <div className="col" display="block" >
-                            <Image align="right" alt="Smiley face" height="90%" width="40%" src={this.state.imageStr} roundedCircle></Image>
+                            <Image align="right" alt="Smiley face" height="90%" width="40%" src={this.oppela()} roundedCircle></Image>
                         </div>
                     </div>
                 </Card.Body>
