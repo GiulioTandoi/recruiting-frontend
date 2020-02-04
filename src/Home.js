@@ -116,8 +116,8 @@ class Home extends Component {
 
                         <Nav className="mr-auto ">
                             <DropdownButton id="dropdown-item-button" title="MYACCOUNT">
-                                <Dropdown.Item as="button" onClick={this.showSelezionatore}>View your Profile</Dropdown.Item>
-                                <Dropdown.Item as="button" onClick={this.showListaPreferiti}>Favourite List</Dropdown.Item>
+                                <Dropdown.Item as="button" onClick={this.showSelezionatore}>Il mio account</Dropdown.Item>
+                                <Dropdown.Item as="button" onClick={this.showListaPreferiti}>Lista preferiti</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item as="button" onClick={this.logout}>Logout</Dropdown.Item>
                             </DropdownButton>
@@ -130,13 +130,13 @@ class Home extends Component {
                             {!this.state.clicked &&
                                 <Row>
                                     <Button className="btn btn-secondary" style={{ marginTop: "1.4%" }} onClick={this.setFormVisibility}>
-                                        {!this.state.clicked && <p>SEARCH</p>}</Button>
+                                        {!this.state.clicked && <p>CERCA</p>}</Button>
                                 </Row>}
 
                             {this.state.clicked &&
                                 <Row>
                                     <Button className="btn btn-secondary" style={{ marginTop: "1.4%" }} onClick={this.filterProfiles} >
-                                        SHOW PROFILE</Button>
+                                        MOSTRA PROFILO</Button>
                                 </Row>}
 
 
