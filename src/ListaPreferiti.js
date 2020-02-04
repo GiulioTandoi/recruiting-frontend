@@ -8,7 +8,7 @@ import NavBar2 from './NavBar2';
 class ListaPreferiti extends Component{
     constructor(props){
         super(props);
-        this.state={listaPreferiti:[], link : false, vuoto: false, idSelezionatore : this.props.location.state.idSelezionatore}
+        this.state={listaPreferiti:[], link : false, vuoto: false, idSelezionatore :this.props.location.state.idSelezionatore}
         console.log(this.state.listaPreferiti)
         console.log("IdSelezionatore ricevuto dalla home "+ this.state.idSelezionatore)
     }

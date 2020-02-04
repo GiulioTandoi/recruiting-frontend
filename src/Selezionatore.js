@@ -14,8 +14,7 @@ class Selezionatore extends Component{
     constructor(props){
         super (props);
         this.state={dettaglioProfiloSelezionatore : []}
-        this.mostradati();
-        console.log(this.props.location.state)
+        
     }
 
     mostradati = () => {
@@ -46,7 +45,6 @@ class Selezionatore extends Component{
     modifica =() => {
         this.props.history.push({pathname : "/modificaSelezionatore" , state : {idSelezionatore :this.props.location.state.idSelezionatore}});
     }
-
     render(){
         let stato ;
         if (this.state.dettaglioProfiloSelezionatore.stato ==null || this.state.dettaglioProfiloSelezionatore.stato === ""){
@@ -56,7 +54,7 @@ class Selezionatore extends Component{
         }
     
         return(
-            <div style={{minWidth:"420px"}}>
+            <div style={{minWidth:"420px"}} >
             <NavBar2 idSelezionatore={this.state.dettaglioProfiloSelezionatore.id}></NavBar2>
             <div className= "col-lg-12" style={{ width: '35%', height : '40', margin:"auto" }} >
 

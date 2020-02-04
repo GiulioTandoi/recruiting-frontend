@@ -12,9 +12,6 @@ class Profilo extends Component{
     constructor(props){
         super(props);
         this.state={dettagliProfilo : [], imageStr : ""}
-        console.log("id "+ this.props.location.state.profilo.id);
-        
-        //console.log(this.props);
     }
 
     componentDidMount = () => {
@@ -42,7 +39,7 @@ class Profilo extends Component{
 
     render(){
         return(
-            <div>
+            <div >
                 <NavBar2 idSelezionatore={this.props.location.state.idSelezionatore}></NavBar2>
                 <Card className="shadow bg-white " 
                     style={{paddingTop:'2%', width: '35%', height : '40%', margin: "auto" }}>

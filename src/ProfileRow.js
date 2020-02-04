@@ -61,7 +61,7 @@ class ProfileRow extends Component{
 
         return(
             <Card style={{marginTop : '16px', fontSize : '1.1em'} }>
-                {this.state.nothingFound && <Alert variant = {"success"} timeout = "40">Profilo aggiunto ai preferiti</Alert>}
+                {this.state.nothingFound && <Alert variant = {"success"} >Profilo aggiunto ai preferiti</Alert>}
                 <Card.Header as="h5" >{this.props.risposta.nome} {this.props.risposta.cognome}</Card.Header>
                 <Card.Body>
                     <div className="row">

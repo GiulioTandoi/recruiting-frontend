@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 //import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { DropdownButton, Dropdown, Form, Row, Col, Container } from 'react-bootstrap';
+import { DropdownButton, Dropdown, Form, Row, Col, Container} from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import './CSS/NavBarPrincipal.css';
 import './CSS/Button.css';
@@ -17,12 +17,14 @@ import axios from 'axios';
 class Home extends Component {
     constructor(props) {
         super(props);
-       
+        console.log ("Document referrer "+document.referrer)
+        
         this.state = {
             clicked: false, value: "", searchType: "",
-            idSelezionatore: this.props.location.state.id, listaelementi: []
+            idSelezionatore: "", listaelementi: []
         }
         console.log("L'id del selezionatore nella Home è " + this.state.idSelezionatore)
+        
     }
 
     componentDidMount = () => {
@@ -31,7 +33,7 @@ class Home extends Component {
         axios.get(apiUrl)
             .then(response => {
                 const { profili } = response.data; //data è il campo di risposta di un Json all'interno del quale ci sono i dati che mi servono per la visualizzazione 
-                console.log(JSON.stringify(profili));
+                //console.log(JSON.stringify(profili));
                 var lista = [];
                 for (var i = 0; i < profili.length; i++) {
                     lista[i] = profili[i];
@@ -99,7 +101,6 @@ class Home extends Component {
         console.log("Il value settato è " + event.target.value + " l'id settato è " + this.state.idSelezionatore);
     }
 
-
     submitSearch = (event) => {
         this.filterProfiles();
         event.preventDefault();
@@ -108,6 +109,7 @@ class Home extends Component {
     render() {
         return (
             <div>
+                
                 <div className="shadow1 mb-5 bg-white rounded" style={{ marginLeft: '2%', marginRight: '2%', marginTop: "1%" }} fluid="true">
 
                     <Navbar bg="primary" variant="dark" style={{ fontSize: '1.3em', paddingLeft: '48px', paddingRight: '48px', position: 'sticky' }} >
