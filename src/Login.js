@@ -39,7 +39,7 @@ class Login extends Component {
                    // nella riga seguente sto aggiungendo un oggetto per il routing, posso usare il push perchè Home è renderizzato come oggetto Route in App.js
                    // Ho bisogno quindi di usare questo sistema perchè non posso renderizzare Home in Login (se così fosse stateo avrei potuto passare id direttamente nelle props come argomento)
                     this.props.history.push({pathname:"/home",  
-                    state:{id: data}
+                    state:{idSelezionatore: data}
                     })
                 
                 }

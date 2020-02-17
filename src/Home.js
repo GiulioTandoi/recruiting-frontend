@@ -17,11 +17,11 @@ import axios from 'axios';
 class Home extends Component {
     constructor(props) {
         super(props);
-        console.log ("Document referrer "+document.referrer)
+        
         
         this.state = {
             clicked: false, value: "", searchType: "",
-            idSelezionatore: "", listaelementi: []
+            idSelezionatore: this.props.location.state.idSelezionatore, listaelementi: []
         }
         console.log("L'id del selezionatore nella Home è " + this.state.idSelezionatore)
         
