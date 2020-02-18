@@ -22,7 +22,7 @@ class Register extends Component {
                         nome: this.state.nome,
                         cognome: this.state.cognome,
                         email: this.state.email,
-                        password: this.state.password,
+                        password: btoa(this.state.password),
                         stato: this.state.stato
                     }
                 ).then(response =>

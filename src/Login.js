@@ -12,24 +12,24 @@ class Login extends Component {
     constructor (props){
         super (props);
         this.state= {email: '', password : '', hasError: false}
-        console.log(this.props);
+        //console.log(this.props);
     }
 
     onChangeEmail = (e) =>{
         this.setState ({email : e.target.value});
-        console.log("Ciao "+ e.target.value);
+        //console.log("Ciao "+ e.target.value);
     }
 
     onChangepassword = (e) =>{
         this.setState({password : e.target.value});
-        console.log("Ciao "+e.target.value);
+        //console.log("Ciao "+e.target.value);
     }
 
     componentDidMount = () =>{
         const apiUrl = "http://localhost:8080/login"; 
         axios.post(apiUrl, {
             email : this.state.email,
-            password : this.state.password
+            password : btoa(this.state.password)
         })
         .then(
             response =>{
