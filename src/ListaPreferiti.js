@@ -23,11 +23,16 @@ class ListaPreferiti extends Component {
                 }
             }).then(response => {
                 let { data } = response;
-                if (data != null) {
-                    this.setState({ listaPreferiti: data.profili });
+             
+                if (data !== "") {
+                    
+                    this.setState({ listaPreferiti: data.profili , vuoto : false});
+                    console.log("Vuoto settato a " + this.state.vuoto);
                 }
                 else {
+                    
                     this.setState({ vuoto: true })
+                    console.log("Vuoto settato a " + this.state.vuoto);
                 }
                 console.log(this.state.listaPreferiti);
             })
@@ -46,12 +51,14 @@ class ListaPreferiti extends Component {
                     <ListGroup.Item variant="primary" action onClick={this.mostraLink} style={{ textAlign: "center" }}>
                         Ottieni link a lista
                     </ListGroup.Item>
-                    {this.state.link && <p>http://localhost:8080/listaPreferiti?id={this.state.idSelezionatore}</p>}
+                    
+                    {this.state.link && <p>http://localhost:8080/listaPreferiti?id_selezionatore={this.state.idSelezionatore}</p>}
+                    { !this.state.vuoto && 
                     <ListGroup>
-                        {this.state.listaPreferiti.map((el, i) => <ListGroup.Item key={i} >{el.nome} {el.cognome}</ListGroup.Item>)}
-                    </ListGroup>
-
-                    {this.state.vuoto && <h5>La lista dei preferiti è vuota</h5>}
+                        {this.state.listaPreferiti.map((el, i) => <ListGroup.Item key={i} >{el.nome} {el.cognome}</ListGroup.Item>)}    
+                    </ListGroup>}
+                    
+                    {this.state.vuoto && <p>La lista dei preferiti è vuota</p>}
 
                 </div>
             </div>
